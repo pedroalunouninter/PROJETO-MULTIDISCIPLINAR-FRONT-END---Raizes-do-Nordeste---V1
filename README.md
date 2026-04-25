@@ -2,7 +2,7 @@
 
 # Raízes do Nordeste
 
-**Culinária nordestina — front-end (demonstração, Opção B · UNINTER)**
+**Culinária nordestina — front-end (UNINTER)**
 
 *Pedido online, fidelidade e reservas. Dados simulados; pronto para portfólio e entrega académica.*
 

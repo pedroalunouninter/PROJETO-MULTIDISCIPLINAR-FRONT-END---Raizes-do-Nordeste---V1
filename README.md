@@ -2,7 +2,7 @@
 
 # Raízes do Nordeste
 
-**Culinária nordestina — front-end (UNINTER)**
+**Culinária nordestina — front-end (demonstração, Opção B · UNINTER)**
 
 *Pedido online, fidelidade e reservas. Dados simulados; pronto para portfólio e entrega académica.*
 
@@ -54,7 +54,17 @@ Abre o endereço que o terminal indicar (em geral **http://localhost:5173**).
 | `npm run preview` | Pré-visualizar o `dist` localmente |
 | `npm run build:github` | Build + cópia para **`docs/`** (GitHub Pages) |
 
-**Logo e favicon:** coloca a imagem em **`webapp/public/img/logo.png`**. Se não existir, usa-se o SVG de reserva em `public/logo-icon.svg`.
+### Logo e ícone (foto em todo o sítio)
+
+A mesma imagem **`webapp/public/img/logo.png`** alimenta o **cabeçalho**, o **rodapé**, o **favicon** (ícone da aba) e o *apple-touch-icon*.
+
+| Ficheiro | Uso |
+|----------|-----|
+| **`img/logo.png`** | Incluído por defeito (gerado a partir de `logo-icon.svg` em 256px). **Substitui** este ficheiro pela tua foto (mantém o nome `logo.png`) e volta a fazer o build. |
+| **`logo-icon.svg`** | Modelo vectorial; podes recriar o PNG com `npm run generate:logo` (na pasta `webapp`). Para sobrescrever um `logo.png` já existente, no PowerShell: `$env:FORCE='1'; npm run generate:logo` |
+| **`favicon.svg`** | SVG extra no repositório; o `index` usa o PNG, não depende dele. |
+
+O `index.html` aponta explicitamente para `img/logo.png` em todas as ligações de ícone, para a aba e o atalho no telemóvel coincidirem com a logo do site.
 
 ---
 

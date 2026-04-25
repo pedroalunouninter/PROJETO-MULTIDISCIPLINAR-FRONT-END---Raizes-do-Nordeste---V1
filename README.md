@@ -1,48 +1,37 @@
-# Raízes do Nordeste — demonstração front-end (Opção B)
+<div align="center">
 
-**Autor:** Pedro Afonso Barreto Fonseca de Oliveira · **RU:** 1992822
+# Raízes do Nordeste
 
-Aplicação **React + TypeScript + Vite** com **dados mockados** (`webapp/src/data/mock.ts`), persistência simulada no **localStorage** (pedidos, carrinho, sessão, consentimento LGPD) e fluxo visual de **pagamento externo** (sem cobrança real).
+**Culinária nordestina — front-end (demonstração, Opção B · UNINTER)**
 
-## O que este projeto cobre (alinhado ao roteiro)
+*Pedido online, fidelidade e reservas. Dados simulados; pronto para portfólio e entrega académica.*
 
-| Requisito | Onde está |
-|-----------|-----------|
-| Cadastro e autenticação | `/auth` — usuários em `localStorage` (demonstração; senha não é segura) |
-| Cardápio por unidade | `/unidades` → `/cardapio` — itens filtrados por unidade em `src/data/mock.ts` |
-| Pedido completo | Carrinho → checkout → `/pagamento` |
-| Status do pedido | `/pedidos`, `/pedido/:id` — linha do tempo + botão “Simular avanço” |
-| Fidelidade | `/fidelidade` — pontos e resgate mock |
-| Promoções | `/promocoes` — códigos; no carrinho use `SUCO10` (10%) ou `NORD10` (+10 pts no fechamento) |
-| Pagamento externo | `/pagamento` — tela do parceiro fictício + retorno com ID de transação mock |
-| Reserva de mesa | `/reservas` — galeria (Unsplash), planta ilustrativa do salão, mapas Google Maps por unidade (embed); formulário; `localStorage` (`rdn_reservations`); lista/cancelamento com conta |
-| LGPD | Banner inferior, página `/privacidade`, checkboxes obrigatórias no cadastro |
-| Mobile-first / responsivo | `src/styles/global.css` — breakpoints e layout fluido |
+<br />
 
-## Como rodar localmente
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=111)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=fff)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=fff)](https://vitejs.dev)
+[![Node](https://img.shields.io/badge/Node.js-LTS-339933?style=for-the-badge&logo=node.js&logoColor=fff)](https://nodejs.org/)
 
-Tudo fica na pasta **`webapp/`**.
+**Autor:** Pedro Afonso Barreto Fonseca de Oliveira &nbsp;·&nbsp; **RU:** 1992822
 
-### Windows (recomendado se o terminal der erro)
+</div>
 
-No PowerShell, o comando `npm` costuma falhar com *“execução de scripts foi desabilitada”* (ele tenta rodar `npm.ps1`).
+---
 
-1. Entre na pasta **`webapp`** e dê **dois cliques em `EXECUTAR.bat`**.  
-   Ele instala dependências na primeira vez e abre o servidor (geralmente **http://localhost:5173**).
+## Sobre o projeto
 
-2. Se preferir digitar no **PowerShell**, use sempre **`npm.cmd`** (com `.cmd`):
-   ```powershell
-   cd webapp
-   npm.cmd install
-   npm.cmd run dev
-   ```
+Aplicação **React + TypeScript + Vite** com **dados mockados** (`webapp/src/data/mock.ts`) e **localStorage** para pedidos, carrinho, sessão, reservas e consentimento **LGPD**. Há ainda o fluxo visual de **pagamento externo** (sem transação real). Navegação com **React Router**; estilos **CSS** e layout **mobile-first**.
 
-3. Ou abra o **Prompt de Comando (cmd.exe)** e use `npm install` e `npm run dev` normalmente.
+> O código a desenvolver e a correr está na pasta **`webapp/`** — é essa a raiz de trabalho com `npm` e o Vite.
 
-4. Para liberar o `npm` no PowerShell de vez:  
-   `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` (confirme com `S`).
+---
 
-### Linux / macOS
+## Início rápido
+
+| Requisito | Nota |
+|-----------|------|
+| [Node.js](https://nodejs.org/) | LTS recomendado; npm vem incluído |
 
 ```bash
 cd webapp
@@ -50,43 +39,122 @@ npm install
 npm run dev
 ```
 
-Abra o endereço indicado no terminal (em geral `http://localhost:5173`).
+Abre o endereço que o terminal indicar (em geral **http://localhost:5173**).
 
-- **Build de produção:** `npm run build` (gera `webapp/dist/`).
-- **Logo e ícone (aba do navegador):** coloque sua foto em **`webapp/public/img/logo.png`** (nome exato). O mesmo arquivo é usado no menu, no topo e como favicon. Se o PNG não existir, o app usa o SVG `public/logo-icon.svg` como reserva.
+**Windows (PowerShell):** se o `npm` falhar por política de execução, usa `npm.cmd` em vez de `npm`, abre a pasta `webapp` e corre **`EXECUTAR.bat`**, ou vê a secção [Windows (detalhe)](#windows-detalhe) abaixo.
 
-## Publicação (entrega técnica)
+---
 
-- **Netlify / Vercel:** importe o repositório com **base directory** `webapp`, **build command** `npm run build` e **publish directory** `dist`. Ative **redirects para SPA** (todas as rotas → `index.html`), pois o app usa rotas do tipo `/cardapio`.
-- **GitHub Pages:** exige `base` no Vite apontando para o nome do repositório ou usar uma solução de SPA (404 → index); Netlify/Vercel costuma ser mais simples para React Router.
+## Scripts principais
 
-### Checklist antes de entregar o PDF
+| Comando | O que faz |
+|--------|------------|
+| `npm run dev` | Servidor de desenvolvimento (hot reload) |
+| `npm run build` | Build de produção em `webapp/dist/` |
+| `npm run preview` | Pré-visualizar o `dist` localmente |
+| `npm run build:github` | Build + cópia para **`docs/`** (GitHub Pages) |
 
-- [ ] Link do **repositório** público (GitHub/GitLab etc.).
-- [ ] Link da **URL publicada** abrindo em aba anônima.
-- [ ] Testar: cadastro → unidade → cardápio → carrinho → pagamento → pedido → status (e, se quiser, **reserva de mesa** em `/reservas`).
-- [ ] Declarar no documento se usou assistentes (conforme regras da disciplina): ferramenta, objetivo, prompts, trechos.
+**Logo e favicon:** coloca a imagem em **`webapp/public/img/logo.png`**. Se não existir, usa-se o SVG de reserva em `public/logo-icon.svg`.
 
-## Estrutura principal
+---
+
+## Publicação
+
+### GitHub Pages (recomendado para este repositório)
+
+A URL pública segue: `https://<utilizador>.github.io/<nome-exato-do-repositório>/`
+
+O ficheiro **`webapp/.env.production`** define o `VITE_BASE` (mesmo caminho do repositório). Se estiver errado, a página fica em branco — o JavaScript não encontra os ficheiros.
+
+**Fluxo com pasta `docs` e branch `main`:**
+
+1. Em **`webapp`:** `npm run build:github`
+2. Faz **commit** e **push** da pasta **`docs/`** (pode ser pelo GitHub Desktop)
+3. **Settings → Pages:** branch `main`, pasta **`/docs`** (não uses a raiz `/(root)` com o `index` de desenvolvimento nem só a pasta de código `webapp`)
+
+A cada alteração no site, repete o build, commit da `docs/` e push.
+
+### Netlify / Vercel
+
+- **Base directory:** `webapp`  
+- **Build:** `npm run build`  
+- **Publicar:** `dist`  
+- **SPA:** reencaminhar todas as rotas para `index.html`
+
+Em geral o site fica na raiz do domínio; o `VITE_BASE` em `/` costuma ser suficiente.
+
+### GitHub Actions (opcional)
+
+O workflow `.github/workflows/gh-pages.yml` publica no ramo **`gh-pages`**. Nesse caso, em **Settings → Pages**, escolhe a fonte **gh-pages** (raiz), em alternativa a `main` + `/docs`. Não atives duas formas em simultâneo sem perceber qual prevalece.
+
+---
+
+## Mapa de funcionalidades (roteiro)
+
+| Área | Onde |
+|------|------|
+| Cadastro e autenticação | `/auth` — `localStorage` (simulação; senha sem segurança real) |
+| Unidades e cardápio | `/unidades` → `/cardapio` — `src/data/mock.ts` |
+| Pedido completo | Carrinho → checkout → `/pagamento` |
+| Pedidos e acompanhamento | `/pedidos`, `/pedido/:id` — linha do tempo + "Simular avanço" |
+| Fidelidade | `/fidelidade` |
+| Promoções | `/promocoes` — no carrinho: `SUCO10` (10%) ou `NORD10` (+10 pts) |
+| Pagamento externo | `/pagamento` (parceiro fictício + transação mock) |
+| Reservas | `/reservas` — galeria, mapas, formulário, `localStorage` |
+| LGPD | Banner, `/privacidade`, checkboxes no cadastro |
+| Responsivo | `src/styles/global.css` |
+
+---
+
+## Estrutura (resumo)
 
 ```
-webapp/
-  package.json
-  vite.config.ts
-  index.html
-  EXECUTAR.bat            — dois cliques: instala (1ª vez) e sobe o servidor
-  dev.bat / install.bat   — só dev ou só install (cmd)
-  public/img/logo.png     — logo + favicon (obrigatório para sua arte em PNG)
-  src/
-    App.tsx
-    main.tsx
-    data/mock.ts          — cardápio, unidades, promoções, gateway mock
-    context/AppContext.tsx  — carrinho, sessão, pedidos, LGPD
-    pages/                — telas
-    styles/global.css
+Projeto/
+├── docs/                    # Site estático para GitHub Pages (gerada por build:github)
+├── webapp/
+│   ├── .env.production     # VITE_BASE em produção
+│   ├── public/
+│   ├── scripts/            # gh-pages-404, publish-docs
+│   ├── src/
+│   │   ├── data/mock.ts
+│   │   ├── context/
+│   │   ├── pages/
+│   │   └── styles/global.css
+│   ├── index.html
+│   ├── EXECUTAR.bat
+│   └── vite.config.ts
+└── README.md
 ```
 
-## Observações
+---
 
-- **Segurança:** senhas ficam em texto no `localStorage` apenas para simulação acadêmica — não reutilize em produção.
-- **Dados:** limpar dados do site nas configurações do navegador remove usuários e pedidos locais.
+## Windows (detalhe)
+
+1. Duplo clique em **`webapp/EXECUTAR.bat`** — instala na primeira vez e abre o servidor.  
+2. No PowerShell: `npm.cmd install` e `npm.cmd run dev` dentro de `webapp`.  
+3. No **cmd.exe** podes usar `npm` normalmente.  
+4. Para permitir `npm` no PowerShell: `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
+
+---
+
+## Checklist de entrega
+
+- [ ] Link do repositório público  
+- [ ] URL do site a abrir em janela anónima  
+- [ ] Testar: cadastro → unidade → cardápio → carrinho → pagamento → pedidos (e, se quiser, reservas)  
+- [ ] Regras da disciplina: declarar uso de assistentes (ferramenta, objetivo, prompts, excertos), se aplicável  
+
+---
+
+## Aviso
+
+- **Segurança:** palavras-passe no `localStorage` em claro **apenas** para a demonstração académica.  
+- **Dados locais:** limpar dados do site no browser remove pedidos, reservas e sessão.  
+
+---
+
+<div align="center">
+
+**Feito com dedicação · Raízes do Nordeste**
+
+</div>

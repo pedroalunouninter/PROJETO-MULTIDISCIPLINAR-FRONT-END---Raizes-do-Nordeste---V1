@@ -84,6 +84,13 @@ O ficheiro **`webapp/.env.production`** define o `VITE_BASE` (mesmo caminho do r
 
 A cada alteração no site, repete o build, commit da `docs/` e push.
 
+**Se no GitHub ainda vires ficheiros antigos, erros 404 a imagens, ou a cabeçar a “partida”:**
+
+- Confirma no GitHub que o **último commit** inclui **tudo** o que está em `docs/`, em especial `docs/assets/*.js`, `docs/assets/*.css` e **`docs/assets/logo-….png`**. O build mete a logo num PNG com hash nessa pasta; se só submeteres o `index.html` e não os PNG, o site fica desactualizado.
+- No GitHub Desktop, verifica se os ficheiros em **`docs/assets/`** entram no commit (não fiques só com a pasta vazia por engano).
+- Se usares o ramo **gh-pages** (workflow) e **não** `main` + `docs/`, o push a `main` sozinho não muda a página: ou activas a action e esperas a correr, ou usas o fluxo `docs/`.
+- Depois do push, espera 1–3 minutos e faz **atualizar em força** (Ctrl+F5) ou abre a página em janela anónima (cache de CDN e do browser).
+
 ### Netlify / Vercel
 
 - **Base directory:** `webapp`  

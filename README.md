@@ -1,4 +1,4 @@
-# Raízes do Nordeste — demonstração front-end (Opção B)
+# Raízes do Nordeste — demonstração front-end
 
 **Autor:** Pedro Afonso Barreto Fonseca de Oliveira · **RU:** 1992822
 

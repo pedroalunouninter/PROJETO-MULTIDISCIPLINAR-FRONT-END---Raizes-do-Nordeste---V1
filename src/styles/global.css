@@ -1791,6 +1791,20 @@ body.mobile-menu-open .nav-toggle-burger span:nth-child(3) {
   max-width: 22rem;
 }
 
+.foot-brand-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.foot-brand-mark {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
 .foot-logo {
   font-family: var(--font-display);
   font-weight: var(--font-display-weight);
@@ -1799,7 +1813,8 @@ body.mobile-menu-open .nav-toggle-burger span:nth-child(3) {
   text-transform: uppercase;
   color: #fff;
   display: block;
-  margin-bottom: 0.65rem;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .foot-desc {
@@ -2558,6 +2573,12 @@ body.mobile-menu-open .nav-toggle-burger span:nth-child(3) {
   height: 44px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.foot-brand-mark .logo-img--icon.logo-img--foot {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
 }
 
 .logo-img--wordmark {

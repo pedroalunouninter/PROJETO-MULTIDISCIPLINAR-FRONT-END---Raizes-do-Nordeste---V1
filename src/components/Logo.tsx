@@ -1,20 +1,20 @@
 import { useCallback, useState } from "react";
+import logoPng from "../assets/logo.png";
 
 const base = import.meta.env.BASE_URL;
-
-/** PNG em `public/img/logo.png` — logo e favicon */
-export function logoAssetUrl(): string {
-  return `${base}img/logo.png`.replace(/\/{2,}/g, "/");
-}
-
 const logoSvgFallback = `${base}logo-icon.svg`.replace(/\/{2,}/g, "/");
 
+/** URL resolvida pelo Vite (inclui `base` do GitHub Pages). Favicon continua a usar `public/img/logo.png`. */
+export function logoAssetUrl(): string {
+  return logoPng;
+}
+
 export function LogoIcon({ className = "" }: { className?: string }) {
-  const [src, setSrc] = useState(logoAssetUrl());
+  const [src, setSrc] = useState(logoPng);
   const [failed, setFailed] = useState(false);
 
   const onError = useCallback(() => {
-    if (src.includes("/img/logo.png")) {
+    if (src === logoPng) {
       setSrc(logoSvgFallback);
     } else {
       setFailed(true);

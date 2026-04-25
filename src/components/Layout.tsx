@@ -214,7 +214,12 @@ export function Layout() {
         <footer className="site-footer site-footer--full">
           <div className="foot-inner">
             <div className="foot-brand">
-              <span className="foot-logo">Raízes do Nordeste</span>
+              <div className="foot-brand-head">
+                <span className="foot-brand-mark" aria-hidden="true">
+                  <LogoIcon className="logo-img--foot" />
+                </span>
+                <span className="foot-logo">Raízes do Nordeste</span>
+              </div>
               <p className="foot-desc">
                 Cozinha regional nordestina — receitas de terreiro, salão e feira. Demonstração acadêmica com dados
                 fictícios.

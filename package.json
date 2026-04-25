@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && node scripts/gh-pages-404.mjs",
+    "build:github": "npm run build:github --prefix webapp",
     "preview": "vite preview"
   },
   "devDependencies": {

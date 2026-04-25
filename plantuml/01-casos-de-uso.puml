@@ -1,0 +1,36 @@
+@startuml casos-de-uso-raizes
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+left to right direction
+
+actor Visitante as V
+actor "Usuário autenticado" as U
+
+rectangle "Sistema Raízes do Nordeste" {
+  usecase "Navegar site / Home" as UC1
+  usecase "Cadastrar / Entrar" as UC2
+  usecase "Selecionar unidade" as UC3
+  usecase "Ver cardápio e carrinho" as UC4
+  usecase "Aplicar cupom" as UC5
+  usecase "Pagar / simular gateway" as UC6
+  usecase "Acompanhar pedidos e status" as UC7
+  usecase "Fidelidade e promoções" as UC8
+  usecase "Reservar mesa" as UC9
+  usecase "Privacidade / LGPD" as UC10
+}
+
+V --> UC1
+V --> UC2
+V --> UC3
+V --> UC4
+V --> UC9
+V --> UC10
+
+U --> UC4
+U --> UC5
+U --> UC6
+U --> UC7
+U --> UC8
+U --> UC9
+
+@enduml

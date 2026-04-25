@@ -1,0 +1,104 @@
+@startuml classes-raizes
+skinparam classAttributeIconSize 0
+left to right direction
+
+class User {
+  + id : string
+  + name : string
+  + email : string
+  + phone : string
+  + points : number
+}
+
+class CartLine {
+  + itemId : string
+  + qty : number
+}
+
+class Order {
+  + id : string
+  + userId : string
+  + unitId : string
+  + status : OrderStatus
+  + total : number
+  + items : ItemLinha[]
+}
+
+class ItemLinha <<embedded>> {
+  + itemId : string
+  + qty : number
+  + name : string
+  + unitPrice : number
+}
+
+class TableReservation {
+  + id : string
+  + userId : string
+  + unitId : string
+  + date : string
+  + time : string
+  + guests : number
+  + status : ReservationStatus
+}
+
+class MenuItem {
+  + id : string
+  + unitId : string
+  + category : string
+  + name : string
+  + price : number
+  + desc : string
+}
+
+class Unit {
+  + id : string
+  + name : string
+  + city : string
+  + address : string
+  + hours : string
+  + lat : number
+  + lng : number
+}
+
+class AppProvider <<React Context>> {
+  + user : User
+  + orders : Order[]
+  + reservations : TableReservation[]
+  + cart : CartLine[]
+  + selectedUnit : string
+  + addOrder()
+  + updateOrder()
+  + addReservation()
+  + updateReservation()
+  + addCartItem()
+  + setUser()
+}
+
+enum OrderStatus {
+  recebido
+  em_preparo
+  pronto
+  entregue
+}
+
+enum ReservationStatus {
+  pendente
+  confirmada
+  cancelada
+}
+
+Order *-- ItemLinha : items
+Order ..> OrderStatus
+TableReservation ..> ReservationStatus
+
+AppProvider ..> User : gerencia
+AppProvider ..> Order : gerencia
+AppProvider ..> TableReservation : gerencia
+AppProvider ..> CartLine : gerencia
+
+Order ..> User : userId
+Order ..> Unit : unitId
+TableReservation ..> Unit : unitId
+MenuItem ..> Unit : unitId
+
+@enduml

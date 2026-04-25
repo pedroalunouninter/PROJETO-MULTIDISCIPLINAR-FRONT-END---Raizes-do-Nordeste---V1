@@ -1,0 +1,87 @@
+@startuml der-raizes
+hide circle
+
+entity USUARIO {
+  * **id** : string <<PK>>
+  --
+  name : string
+  email : string
+  phone : string
+  points : int
+}
+
+entity UNIDADE {
+  * **id** : string <<PK>>
+  --
+  name : string
+  city : string
+  address : string
+  hours : string
+  lat : double
+  lng : double
+}
+
+entity ITEM_CARDAPIO {
+  * **id** : string <<PK>>
+  --
+  * unitId : string <<FK>>
+  category : string
+  name : string
+  price : double
+  desc : string
+}
+
+entity PEDIDO {
+  * **id** : string <<PK>>
+  --
+  * userId : string <<FK>>
+  unitId : string <<FK>>
+  status : string
+  subtotal : double
+  discount : double
+  total : double
+  createdAt : string
+  transactionId : string
+  promoCode : string
+  pointsEarned : int
+}
+
+entity LINHA_PEDIDO {
+  * itemId : string <<FK>>
+  --
+  qty : int
+  name : string
+  unitPrice : double
+}
+
+entity RESERVA_MESA {
+  * **id** : string <<PK>>
+  --
+  userId : string <<FK>>
+  * unitId : string <<FK>>
+  contactName : string
+  contactPhone : string
+  date : string
+  time : string
+  guests : int
+  notes : string
+  status : string
+  createdAt : string
+}
+
+USUARIO ||--o{ PEDIDO : realiza
+USUARIO ||--o{ RESERVA_MESA : possui
+UNIDADE ||--o{ PEDIDO : referencia
+UNIDADE ||--o{ RESERVA_MESA : localiza
+UNIDADE ||--o{ ITEM_CARDAPIO : oferece
+PEDIDO ||--|{ LINHA_PEDIDO : contem
+
+note bottom of RESERVA_MESA
+  userId pode ser nulo para reserva sem login.
+end note
+
+note bottom of LINHA_PEDIDO
+  Na implementação, linhas ficam embutidas em JSON dentro de PEDIDO.
+end note
+
+@enduml
